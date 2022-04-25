@@ -49,8 +49,18 @@ function tweetsGet() {
   })
 }
 
+function tweetsGetUser() {
+  app.get("/tweets/:userId", (req, res) => {
+    const { userId } = req.params
+    const userTweet = tweets.filter((userTweet) => userTweet.username === userId)
+    console.log(userTweet);
+    res.send(userTweet);
+  })
+}
+
 signUp();
 tweetsPost();
 tweetsGet();
+tweetsGetUser();
 
 app.listen(5000, () => console.log("Server On"))
